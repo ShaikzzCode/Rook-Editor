@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rook Editor</title>
+    <link rel="icon" href="rook bird.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"
+      type="text/javascript"
+    ></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <section class="header">
+      <div class="options">
+        <span class="option">
+          <img
+            src="rook editor toolbar.png"
+            alt="rook_logo"
+            class="rook_logo"
+          />
+        </span>
+        <span class="option btnsOpt">
+          Font Size  &nbsp;
+          <span class="fsBtns" id="minus_btn">-</span>
+          <span class="fsBtns" id="plus_btn">+</span>
+        </span>
+      </div>
+    </section>
+
+
+
+
+
+    <section class="main_parent" id="main_parent">
+      <div id="editor" class="editor"></div>
+      <div id="handle"></div>
+      <div id="output-container" class="output-container">
+        <div class="dragger_frame" id="dragger_frame"></div>
+        <iframe id="output-frame" class="output-frame"></iframe>
+      </div>
+    </section>
+
+
+
+
+    <section class="footer">
+      <p>
+        <span class="made_with">Made with </span>
+        <span class="heart made_with">&#9829;</span>
+      </p>
+    </section>
+
+
+
+    <!-- This is Save Button -->
+    <div class="save_btn" id="saveBtn">
+      <img src="./save_btn_new.png" alt="save_btn">
+    </div>
+
+    <!-- Full-screen parent section for the custom dialog -->
+    <section id="custom-dialog-parent" style="display: none;">
+      <!-- Custom dialog HTML -->
+      <div id="custom-dialog">
+          <label for="filename">Enter the file name (without extension):</label>
+          <input type="text" id="filename" placeholder="Enter file name">
+          <button id="custom-dialog-cancel">Cancel</button>
+          <button id="custom-dialog-save">Save</button>
+      </div>
+  </section>
+
+
+  <!-- Full-screen parent section for the custom alert -->
+  <section id="custom-alert-parent" style="display: none;">
+    <!-- Custom dialog HTML for the alert -->
+    <div id="custom-alert-dialog">
+        <p>Changes you made may not be saved.  <br> Are you sure you want to continue?</p>
+        <div>
+          <button class="custom-alert-button" id="custom-alert-ok-button">OK</button>
+        <button class="custom-alert-button" id="custom-alert-cancel-button">Cancel</button>
+        </div>
+    </div>
+</section>
+
+  </body>
+</html>

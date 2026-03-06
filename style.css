@@ -1,0 +1,338 @@
+@font-face {
+    font-family: MyRubikFont;
+    src: url("Rubik.ttf");
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(48, 48, 48);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--palePinkColor);
+    border-radius: 10px;
+    box-shadow: 0 0 5px black;
+    cursor: pointer;
+    border: 1px solid white;
+  }
+  :root {
+    /* --palePinkColor: rgb(0, 135, 218); */
+    --palePinkColor: rgb(37,40,44);
+  }
+  body{
+    background-color: var(--palePinkColor);
+  }
+  .main_parent {
+    display: grid;
+    grid-template-columns: 1fr 5px 1fr;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    background-color: var(--palePinkColor);
+    overflow: hidden;
+  }
+
+  .editor {
+    min-width: 20vw;
+    /* border: 1px solid #ccc; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
+    transition: flex 0.3s;
+  }
+
+  .output-container {
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.404);
+    transition: flex 0.3s;
+  }
+
+
+#handle {
+    width: 5px;
+    cursor: col-resize;
+    background: rgb(188, 188, 188);
+}
+
+  .output-frame {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+  }
+  .dragger_frame{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    opacity: 0;
+    display: none;
+    position: absolute;
+  }
+  
+  .footer,
+  .header {
+    height: 40px;
+    width: 100%;
+    background-color: var(--palePinkColor);
+    user-select: none;
+    font-size: 15px;
+    font-family: "MyRubikFont", serif;
+  }
+  .footer p {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .made_with {
+    color: white;
+  }
+  .heart {
+    margin-left: 5px;
+    font-size: 20px;
+  }
+  .options {
+    height: 100%;
+    width: 50vw;
+    padding-right: 100px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: space-between;
+    transition: all .5s;
+  }
+  .fsBtns {
+    cursor: pointer;
+    /* display: inline-block; */
+    justify-content: center;
+    align-items: center;
+    margin: 0 1px;
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 100%;
+    color: var(--palePinkColor);
+    font-size: 20px;
+    background-color: white;
+  }
+  .fsBtns:hover {
+    scale: 1.1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.334);
+  }
+  .rook_logo {
+    width: 80px;
+  }
+
+
+  /* Save Button Code */
+  .save_btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--palePinkColor);
+    position: fixed;
+    bottom: 50px;
+    z-index: 999;
+    left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid white;
+    padding: 5px;
+}
+
+
+/* Custom dialog and full-screen parent section styles */
+#custom-dialog-parent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#custom-dialog {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  height: 120px;
+  border-radius: 10px;
+}
+#filename{
+  width: 100%;
+  height: 30px;
+  outline: none;
+  margin: 5px 0;
+  padding: 0 6px;
+}
+#custom-dialog>button{
+  width: 48%;
+  height: 30px;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+}
+#custom-dialog-save{
+  background-color: var(--palePinkColor);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+}
+#custom-dialog-cancel{
+  border-radius: 5px;
+  border: 1px solid rgb(98, 98, 98);
+}
+#custom-dialog>label{
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'MyRubikFont',serif;
+  user-select: none;
+}
+
+
+
+/* Custom dialog and full-screen parent section styles for the alert */
+#custom-alert-parent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#custom-alert-dialog {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-height: 160px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#custom-alert-dialog>p{
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'MyRubikFont',serif;
+  margin-bottom: 10px;
+  user-select: none;
+}
+#custom-alert-dialog>div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#custom-alert-dialog>div>button{
+  width: 40%;
+  height: 30px;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+}
+#custom-alert-ok-button{
+  background-color: red;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+}
+#custom-alert-cancel-button{
+  border-radius: 5px;
+  border: 1px solid rgb(98, 98, 98);
+}
+
+.custom-alert-button {
+  margin: 5px;
+}
+
+
+
+
+
+
+
+  @media screen and (max-width:400px) {
+    .main_parent{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100vh;
+    }
+    .editor{
+      width: 100%;
+      height: 48vh;
+    }
+    .output-container{
+      width: 100%;
+      height: 50vh;
+      margin-left: 0;
+      margin-top: 5px;
+    }
+    .save_btn{
+      left: 85vw;
+      bottom: 48vh;
+    }
+  }
+
+  @media screen and (max-width:700px) {
+
+    .options{
+      width: 100%;
+      justify-content: space-between;
+      padding-right: 0;
+    }
+    .option{
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width:350px) {
+    .btnsOpt{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: all .5s;
+    }
+    .save_btn{
+      left: 83vw;
+      bottom: 48vh;
+    }
+  }
+
+  @media screen and (max-width:270px) {
+    .btnsOpt{
+      scale: 0.6;
+    }
+    .save_btn{
+      left: 80vw;
+      bottom: 48vh;
+    }
+  }
